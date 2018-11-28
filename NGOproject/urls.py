@@ -10,6 +10,8 @@ urlpatterns = [
     url('signup/', views.signup, name='signup'),
     url('donation/', views.donation, name='donation'),
     url('donation_detail/(?P<id>\d+)/$', views.donation_detail, name='donation_detail'),
+    url('admintemplate/', views.admintemplate, name='admintemplate'),
+    url('userManagement/', views.user_Management, name='userManagement'),
     url('accounts/', include('django.contrib.auth.urls')),
     url('^$', views.home, name='home'),
 

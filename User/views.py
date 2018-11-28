@@ -14,16 +14,26 @@ def signup(request):
     return render(request, 'registration/signup.html')
 
 def edit_user(request, id):
+    User.objects.filter(id= id).delete()
     return render(request, 'edit_user.html')
 
 
 def delete_user(request,id):
-    return render(request, 'delet_user.html')
+    User.objects.filter(id=id).delete()
+    return render(request, 'userManagement.html')
 
 
 def donation_detail(request, id):
     user = get_object_or_404(User,id=id)
     return render(request, "donation_detail.html", {'user': user})
+
+def user_Management(request):
+    users = User.objects.all()
+    return render(request, "userManagement.html", {'users': users})
+
+def admintemplate(request):
+
+    return render(request, "AdminTemplate.html")
 
 
 def donation(request):
