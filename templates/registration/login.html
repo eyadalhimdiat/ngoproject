@@ -4,6 +4,17 @@
     <form method="post"></form>
         {% csrf_token %}
         {{ form.as_p }}
+
          <button type="submit" >Log in</button>
+        {% if user.is_authenticated %}
+            <form action="{% url 'admintemplate'%}">
+                <input type="submit" value=" admin management" />
+            </form>
+        {% else  %}
+            <form action="{% url 'userView'%}">
+                <input type="submit" value="User Management" />
+            </form>
+        {% endif %}
+
     </form>
 {% endblock %}

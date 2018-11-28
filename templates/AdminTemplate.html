@@ -2,14 +2,14 @@
 
 {% block content %}
     <ul>
-    <p><form action="{% url 'donation'%}">
+    <p><form action="{% url 'userManagement'%}">
     <input type="submit" value="User Management" />
     </form></p>
-    <p><form action="{% url 'donation'%}">
-    <input type="submit" value="D" />
+    <p><form action="{% url 'userManagement'%}">
+    <input type="submit" value="Donation Management" />
     </form></p>
-    <p><form action="{% url 'donation'%}">
-    <input type="submit" value="Go to the donation page" />
+    <p><form action="{% url 'userManagement'%}">
+    <input type="submit" value="User View" />
     </form></p>
     </ul>
 {% endblock %}
