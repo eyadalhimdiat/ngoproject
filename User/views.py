@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from .forms import UserForm
+from .models import User
 
 def home(request):
     return render(request, 'home.html')
@@ -19,3 +20,25 @@ def edit_user(request, id):
 def delete_user(request,id):
     return render(request, 'delet_user.html')
 
+
+def donation_detail(request, id):
+    user = get_object_or_404(User,id=id)
+    return render(request, "donation_detail.html", {'user': user})
+
+
+def donation(request):
+    print("in donation")
+    if request.method == "POST":
+        form = UserForm(request.POST)
+        print("form validation")
+        if form.is_valid():
+            print("creating a user object")
+            user = form.save(commit=False)
+            user.save()
+            print("after save")
+            return redirect("donation_detail", id=user.id)
+    else:
+        print("in else")
+        form = UserForm()
+        print(form)
+        return render(request,"donation.html", {'form': form})

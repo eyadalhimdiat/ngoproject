@@ -6,8 +6,10 @@ from User import views
 
 
 urlpatterns = [
-    url('^admin/', admin.site.urls),
-    url ('^signup/$', views.signup, name='signup'),
+    url('admin/', admin.site.urls),
+    url('signup/', views.signup, name='signup'),
+    url('donation/', views.donation, name='donation'),
+    url('donation_detail/(?P<id>\d+)/$', views.donation_detail, name='donation_detail'),
     url('accounts/', include('django.contrib.auth.urls')),
     url('^$', views.home, name='home'),
 
