@@ -6,10 +6,16 @@ class donationtype(models.Model):
     name = models.TextField(max_length=200)
     monthlyComitment = models.BooleanField
 
+    def __str__(self):
+        return self.name
+
 
 
 class UserType(models.Model):
     role = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.role
 
 
 
@@ -28,7 +34,7 @@ class User(models.Model):
 
 
     def __str__(self):
-        return self.firstname + "   " + self.lastname + "   " + str(self.donation) + "   " + str(self.created_date.date())
+            return self.firstname + "   " + self.lastname + "   " + str(self.donation) + "   " + str(self.created_date.date())
 
 
 
@@ -37,3 +43,6 @@ class donationtMade(models.Model):
     Amount = models.IntegerField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     donation = models.ForeignKey(donationtype, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user + ' has donated by ' + self.Amount + ' as ' + self.donation
