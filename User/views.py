@@ -18,10 +18,9 @@ def edit_user(request, id):
     return render(request, 'edit_user.html')
 
 
-def delete_user(request,id):
-    User.objects.filter(id=id).delete()
+def delete_user(request,name):
+    User.objects.filter(name=name).delete()
     return render(request, 'userManagement.html')
-
 
 def donation_detail(request, id):
     user = get_object_or_404(User,id=id)
